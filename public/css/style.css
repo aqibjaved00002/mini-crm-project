@@ -1,0 +1,50 @@
+.container-login{
+    margin-left: 35%;
+    height: 600px;
+    width: 30%;
+    background-color: rgb(151, 204, 235);
+}
+#heading{
+    height: 100px;
+    width: 100%;
+    background-color: rgb(70, 121, 187);
+}
+h2{
+    padding: 20px;
+}
+#form{
+    height: 100px;
+    width: 100%;
+    margin-top: 20%;
+    margin-left: 5%;
+}
+input[type=email], input[type=password] {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+}
+.heading-custom {
+    margin-top: 50px;
+}
+
+.profile_image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.user-info p {
+    font-size: 20px;
+}
