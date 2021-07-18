@@ -15,8 +15,35 @@
             @endif
 
             <div class="text-center">
-                <h1 class="display-4">Companies Count</h1>
-                <h1 class="display-3">0</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1 class="display-4">Companies</h1>
+                        <h1 class="display-3" style="color:green;">{{$companies_count}}</h1>
+                    </div>
+                    <div class="col-md-6">
+                        <h1 class="display-4">Employees</h1>
+                        <h1 class="display-3" style="color:green;">{{$employees_count}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="instructions">
+                <h6 style="color:red;"><u>Important instructions:</u></h6>
+                <span>1. Welcome to mini CRM project.</span><br>
+                <span>2. There are two optios:-
+                    <ul>
+                        <li>Companies</li>
+                        <li>Employees</li>
+                    </ul>
+                </span>
+                <span>3. In order to add employees you need to add company first.</span><br>
+                <span>4. When you add company, the added companies will be displayed in combo box of employee form.</span><br>
+                <span>5. After that you'll be able to add employees in a specific company.</span><br>
+                <span>6. An email notification will be sent autometically when you create a company.</span>
             </div>
         </div>
     </div>

@@ -4,12 +4,18 @@ namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Company;
 use Hash;
 use DB;
+use Session;
 
 class CompaniesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +23,7 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        $company = DB::table('companies')->paginate(15);
+        $company = DB::table('companies')->latest()->paginate(10);
 
         return view('Company.index', ['companies' => $company]);
     }
@@ -40,20 +46,29 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
-        $validateDta=$request->validate([
-            'name' => 'required:max:40',
-            'email' => 'required|unique:users|max:190'
-        ]);
-
+        //validations
+        $rule=['name'=> 'required'];
+        $custom_message=['name.required' => 'Company name is required.'];
+        $this->validate($request,$rule,$custom_message);
+        //insert company
         $company=new Company;
         $company->name=$request->name;
         $company->email=$request->email;
         $company->website=$request->website;
+        //Logo uploading
         if($request->hasFile('image')) {
             $company->image = $request->image->store('company_logos', 'public');
         }
         $company->save();
-        return redirect()->back()->with('msg_success', 'User Created Successfully');
+        Mail::send('emails.companyCreatedEmail', $company->toArray(),
+        function($message){
+            $message->to('crm@gmail.com',' Aqib Javed')
+            ->subject('Company created successfuly');
+
+        }
+        );
+        Session::flash('success', 'Company created successfuly.');
+        return redirect()->back();
     }
 
     /**
@@ -64,8 +79,8 @@ class CompaniesController extends Controller
      */
     public function show($id)
     {
-        $company=Company::find($id);
-        return view('Company.show', $company);
+        $company=Company::findOrFail($id);
+        return view('Company.show', compact('company'));
     }
 
     /**
@@ -89,11 +104,11 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required:max:40',
-            'email' => 'required|unique:users|max:190'
-        ]);
-
+        //validations
+        $rule=['name'=> 'required'];
+        $custom_message=['name.required' => 'Company name is required.'];
+        $this->validate($request,$rule,$custom_message);
+        //edit company details
         $company = Company::find($id);
         $company->name=$request->name;
         $company->email=$request->email;
@@ -102,7 +117,8 @@ class CompaniesController extends Controller
             $company->image = $request->image->store('company_logos', 'public');
         }
         $company->save();
-        return redirect()->back()->with('msg_success', 'User Created Successfully');
+        Session::flash('success', 'Company details updated successfuly.');
+        return redirect()->back();
     }
 
     /**
@@ -113,6 +129,9 @@ class CompaniesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $company=Company::find($id);
+        $company->delete();
+        return redirect()->back();
     }
+    
 }

@@ -4,6 +4,7 @@
 
 <div class="container">
     <div class="row">
+    <div><a href="{{route('companies.create')}}" class="btn btn-primary float-right">Add Company</a></div>
         <table class="table text-center">
             <thead class="thead-dark">
                 <tr>
@@ -26,7 +27,7 @@
                     <td class="justify-content-center"> 
                         <a href="{{'companies/'.$company->id}}" class="btn btn-info btn-sm text-light">View</a>
                         <a href="{{'companies/edit/'.$company->id}}" class="btn btn-success btn-sm text-light">Edit</a>
-                        <form action="#" method="POST" style="display:inline-block">
+                        <form action="{{url('companies/delete/'.$company->id)}}" method="POST" style="display:inline-block">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm text-light" value="Delete">
@@ -34,15 +35,16 @@
                     </td>
                 </tr>
                 @empty
+                
                 <tr>
-                    <td>No Records Found.</td>
+                    <td colspan="6">No Records Found.</td>
                 </tr>
                 @endforelse
-                <div><a href="{{route('companies.create')}}" class="btn btn-primary">Add Company</a></div>
-                
             </tbody>
         </table>
-        
+        <div style="margin-left:43%;">
+            {{ $companies->links('pagination::bootstrap-4') }}
+        </div>
     </div>
 </div>
 

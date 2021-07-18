@@ -14,10 +14,10 @@ class CreateCompaniesTable extends Migration
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('website');
+            $table->string('email')->nullable();
+            $table->string('website')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

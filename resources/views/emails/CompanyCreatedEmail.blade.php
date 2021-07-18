@@ -1,0 +1,1 @@
+<h2>Company <span>{{$name}}</span> is created successfuly.</h2>

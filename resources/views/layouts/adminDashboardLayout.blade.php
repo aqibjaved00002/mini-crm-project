@@ -35,6 +35,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('companies')}}">Companies</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('employees')}}">Employees</a>
+                        </li>
                         </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
