@@ -3,8 +3,9 @@
 <p>In order to run this application you need to clone it, run the following command in order to clone it:-</p>
 <p><b>git clone https://github.com/aqibjaved00002/mini-crm-project.git</b></p>
 <h5><u>Setup .env file for Database & Mailing server</u></h5>
-<p>In order to run this application you need to clone it, run the following command in order to clone it:-</p>
+<p>It is important to setup .env file:-</p>
+<p>Setup .env file according to your database. It is important to note that this applicaton contain sending an email functionality when admin create company, so it is important to setup mailing server (mailtrap.io) in .env file enter your mailtrap.io credentials, also change email address written in store method of CompaniesController. It is important to do these steps otherwise you will get an error message, and will not be able to use application.</p>
 <h5>Credentials for login as admin:-</h5>
 <p>Email: admin@admin.com</p>
 <p>Password: password</p>
-<p>You are good go...</p>
+<p>You are good to go...</p>
