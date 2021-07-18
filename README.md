@@ -9,7 +9,6 @@
 <p>Run all the migrations by using the following command: php artisan migrate</p>
 <h5>Run Database seeder</h5>
 <p>Run Database seeder by using the following command: php artisan db:seed (it is important to run for login as admin)</p>
-<p>It is important to setup .env file:-</p>
 <h5>Credentials for login as admin:-</h5>
 <p>Email: admin@admin.com</p>
 <p>Password: password</p>
