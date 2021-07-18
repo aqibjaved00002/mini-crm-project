@@ -62,7 +62,7 @@ class CompaniesController extends Controller
         $company->save();
         Mail::send('emails.companyCreatedEmail', $company->toArray(),
         function($message){
-            $message->to('crm@gmail.com',' Aqib Javed')
+            $message->to('crm@gmail.com',' crm')
             ->subject('Company created successfuly');
 
         }
